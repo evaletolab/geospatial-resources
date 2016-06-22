@@ -22,7 +22,7 @@ describe("zone, assert coherence of data set 'zones.json'", function(){
       turf = require('turf');
 
 
-  var zones = JSON.parse(fs.readFileSync('test/data/zones.json', 'utf-8')),
+  var zones = JSON.parse(fs.readFileSync('data/zones.json', 'utf-8')),
       zone_1 = _.find(zones.features, {id : '1'}),
       zone_2 = _.find(zones.features, {id : '2'}),
       zone_3 = _.find(zones.features, {id : '3'}),
@@ -70,6 +70,11 @@ describe("zone, assert coherence of data set 'zones.json'", function(){
     done()
   });
 
+  it("generate random points inside zone 4", function(done) {
+    var pt4a= turf.pointOnSurface(zone_4);
+    turf.inside(pt4a, zone_4).should.be.true();
+    done()
+  })
 
 
 });
