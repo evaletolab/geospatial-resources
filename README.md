@@ -2,6 +2,8 @@
 TODO
 
 ## Installation
+For node installation, NVM is a nice tool, https://github.com/creationix/nvm
+
 From github,    
 
     git clone https://github.com/evaletolab/geospatial-resources
@@ -20,9 +22,9 @@ To run unit tests you need [Mocha](https://github.com/visionmedia/mocha),
 and [should.js](https://github.com/visionmedia/should.js). The tests are run simply by simply typing:
 
     NODE_ENV=test ./node_modules/.bin/mocha
+    #or
+    make test
 
-Do not run tests with your live processor. Make sure you are running in a
-sandbox.
 
 
 ##Overview
