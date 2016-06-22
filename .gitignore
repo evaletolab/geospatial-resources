@@ -1,0 +1,6 @@
+*.swo
+*.swp
+*.sublime-*
+tmp
+config-pf.js
+node_modules

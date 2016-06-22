@@ -1,0 +1,36 @@
+{
+  "name": "lignes-desir",
+  "description": "Simple motor that maps resources with geo localistion",
+  "version": "0.1.0",
+  "author": "Olivier Evalet <evaleto@gmail.com>",
+  "maintainers": [
+    {
+      "name": "Olivier Evalet",
+      "email": "evaleto@gmail.com"
+    }
+  ],
+  "homepage": "http://github.com/evaletolab/-todo-",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evaletolab/-todo-.git"
+  },
+  "licenses": [
+    {
+      "type": "GPL"
+    }
+  ],
+  "dependencies": {
+    "underscore": "1.8.x"
+  },
+  "devDependencies": {
+    "mocha": ">= 1.x.x",
+    "should": ">= 4.x.x",
+    "webpack": "^1.13.1"
+  },
+  "engine": [
+    "node >=1.x"
+  ],
+  "keywords": [
+    "geo"
+  ]
+}
