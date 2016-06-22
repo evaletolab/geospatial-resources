@@ -10,6 +10,10 @@
 
 - [turf.js](http://turfjs.org/)
 
+## formats
+
+- [to geojson converter](https://github.com/mapbox/togeojson) usable as a lib or as a command line utility
+
 ## audio player libs
 
 - [howler.js](https://github.com/goldfire/howler.js/) minimal web audio player (no skin)
