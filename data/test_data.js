@@ -14,19 +14,22 @@ var zones = JSON.parse(fs.readFileSync('zones.json', 'utf-8')),
 
 // long lat !! order when defining points in GeoJson
 
-// should be in zone 1
+// pt1 should be in zone 1
 var pt1 = turf.point([2.357530296, 48.850952711]);
 assert(turf.inside(pt1, zone_1));
 
-// should be in zone 2
+// pt2 should be in zone 2
 var pt2 = turf.point([2.355159223, 48.851736342]);
 assert(turf.inside(pt2, zone_2));
 
-// should be in zone 3
+// pt3 should be in zone 3
 var pt3 = turf.point([2.355845869, 48.852421126]);
 assert(turf.inside(pt3, zone_3));
 
-// should be in zone 4
+// pt4 should be in zone 4
 var pt4 = turf.point([2.358109653, 48.851637506]);
 assert(turf.inside(pt4, zone_4));
 
+// we get here alive then all is ok…
+
+console.log("all assertions passed");
