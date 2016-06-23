@@ -78,7 +78,7 @@
                 "styleUrl": "#7c4ff72569",
                 "styleHash": "5b39f60a"
             },
-            "id": "1"
+            "zone_id": "1"
         },
         {
             "type": "Feature",
@@ -133,7 +133,7 @@
                 "styleUrl": "#7c4ff72569",
                 "styleHash": "5b39f60a"
             },
-            "id": "2"
+            "zone_id": "2"
         },
         {
             "type": "Feature",
@@ -184,7 +184,7 @@
                 "styleUrl": "#7c4ff72569",
                 "styleHash": "5b39f60a"
             },
-            "id": "3"
+            "zone_id": "3"
         },
         {
             "type": "Feature",
@@ -239,7 +239,7 @@
                 "styleUrl": "#7c4ff72569",
                 "styleHash": "5b39f60a"
             },
-            "id": "4"
+            "zone_id": "4"
         }
     ]
 }

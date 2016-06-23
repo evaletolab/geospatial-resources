@@ -23,10 +23,10 @@ describe("zone, assert coherence of data set 'zones.json'", function(){
 
 
   var zones = JSON.parse(fs.readFileSync('data/zones.json', 'utf-8')),
-      zone_1 = _.find(zones.features, {id : '1'}),
-      zone_2 = _.find(zones.features, {id : '2'}),
-      zone_3 = _.find(zones.features, {id : '3'}),
-      zone_4 = _.find(zones.features, {id : '4'});
+      zone_1 = _.find(zones.features, {zone_id : '1'}),
+      zone_2 = _.find(zones.features, {zone_id : '2'}),
+      zone_3 = _.find(zones.features, {zone_id : '3'}),
+      zone_4 = _.find(zones.features, {zone_id : '4'});
 
 
   before(function(done){
