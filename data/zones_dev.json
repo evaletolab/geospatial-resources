@@ -41,7 +41,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 1
+        "zone_id": 3
       },
       "geometry": {
         "type": "Polygon",
@@ -86,7 +86,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 3
+        "zone_id": 1
       },
       "geometry": {
         "type": "Polygon",
