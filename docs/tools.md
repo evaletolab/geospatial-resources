@@ -7,6 +7,10 @@
 - [gpsvisualizer](http://www.gpsvisualizer.com/draw/) exports to .txt .gpx .kml
 - [gmapgis](http://www.gmapgis.com/) exports to .kml
 
+## geojson
+
+- [list of of geojson tools](https://github.com/tmcw/awesome-geojson)
+
 ## geometry libs
 
 - [turf.js](http://turfjs.org/)
