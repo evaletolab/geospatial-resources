@@ -2,7 +2,8 @@
 
 ## map feature edition
 
-- [scrible maps](https://www.scribblemaps.com) best editing features, exports .gpx and .kml
+- [geojson.io](http://geojson.io/) excellent live geojson editor with good export settings (csv, kml, wkt, shapefile)
+- [scrible maps](https://www.scribblemaps.com) editing features, exports .gpx and .kml
 - [gpsvisualizer](http://www.gpsvisualizer.com/draw/) exports to .txt .gpx .kml
 - [gmapgis](http://www.gmapgis.com/) exports to .kml
 
