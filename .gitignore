@@ -3,5 +3,6 @@
 *.sublime-*
 tmp
 config-pf.js
+config-airtable.js
 node_modules
 .DS_Store
