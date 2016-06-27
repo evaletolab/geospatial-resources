@@ -21,10 +21,10 @@ describe("zone, assert coherence of data set 'zones.json'", function(){
   });
 
   var zones = JSON.parse(fs.readFileSync('data/zones.json', 'utf-8')),
-      zone_1 = _.find(zones.features, {zone_id : '1'}),
-      zone_2 = _.find(zones.features, {zone_id : '2'}),
-      zone_3 = _.find(zones.features, {zone_id : '3'}),
-      zone_4 = _.find(zones.features, {zone_id : '4'});
+      zone_1 = _.find(zones.features, { properties: { zone_id : 'zone_1' }}),
+      zone_2 = _.find(zones.features, { properties: { zone_id : 'zone_2' }}),
+      zone_3 = _.find(zones.features, { properties: { zone_id : 'zone_3' }}),
+      zone_4 = _.find(zones.features, { properties: { zone_id : 'zone_4' }});
 
 
   var pt_on_bourbon_wharf = turf.point([2.355741262435913, 48.85275733753064]),

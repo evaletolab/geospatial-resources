@@ -75,10 +75,8 @@
                 ]
             },
             "properties": {
-                "styleUrl": "#7c4ff72569",
-                "styleHash": "5b39f60a"
-            },
-            "zone_id": "3"
+                "zone_id": "zone_3"
+            }
         },
         {
             "type": "Feature",
@@ -130,10 +128,8 @@
                 ]
             },
             "properties": {
-                "styleUrl": "#7c4ff72569",
-                "styleHash": "5b39f60a"
-            },
-            "zone_id": "2"
+                 "zone_id": "zone_2"
+            }
         },
         {
             "type": "Feature",
@@ -181,10 +177,8 @@
                 ]
             },
             "properties": {
-                "styleUrl": "#7c4ff72569",
-                "styleHash": "5b39f60a"
-            },
-            "zone_id": "1"
+                "zone_id": "zone_1"
+            }
         },
         {
             "type": "Feature",
@@ -236,10 +230,8 @@
                 ]
             },
             "properties": {
-                "styleUrl": "#7c4ff72569",
-                "styleHash": "5b39f60a"
-            },
-            "zone_id": "4"
+                "zone_id": "zone_4"
+            }
         }
     ]
 }

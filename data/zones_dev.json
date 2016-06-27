@@ -4,7 +4,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 2
+        "zone_id": "zone_2"
       },
       "geometry": {
         "type": "Polygon",
@@ -41,7 +41,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 3
+        "zone_id": "zone_3"
       },
       "geometry": {
         "type": "Polygon",
@@ -86,7 +86,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 1
+        "zone_id": "zone_1"
       },
       "geometry": {
         "type": "Polygon",
@@ -127,7 +127,7 @@
     {
       "type": "Feature",
       "properties": {
-        "zone_id": 4
+        "zone_id": "zone_4"
       },
       "geometry": {
         "type": "Polygon",

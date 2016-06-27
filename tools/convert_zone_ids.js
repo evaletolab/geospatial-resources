@@ -5,7 +5,7 @@ var fs = require('fs'),
 
 var rename_zone_ids = function(airtable_db){
     var zone_names = ["Libre", "Zone 1", "Zone 2" , "Zone 3",  "Zone 4"],
-        desired_zone_ids = ['other', 'zone_1', 'zone_2', 'zone_3', 'zone_4'];
+        desired_zone_ids = ["other", "zone_1", "zone_2", "zone_3", "zone_4"];
         zones_table = airtable_db.zones,
         zones = [],
         airtable_ids = []; // list of ids to converted to desired_zone_ids
