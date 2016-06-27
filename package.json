@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "airtable": "^0.4.1",
+    "gulp": "^3.9.1",
     "mocha": ">= 1.x.x",
     "should": ">= 4.x.x",
     "webpack": "^1.13.1"
