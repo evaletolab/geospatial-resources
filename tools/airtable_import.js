@@ -18,9 +18,6 @@ var assets = [],
     characters = [],
     narrative_positions = [];
 
-airtable.configure(config.auth);
-
-var base = airtable.base(config.base_id);
 
 // given a record and a translation dict
 // return a record containing only the properties found in the keys of dict
@@ -120,30 +117,35 @@ var table_definitions = [
     }
 ];
 
+var export_airtable_as_json_to_file = function(file_path, done_cb){
 
-// create a promise per table definition
-var extract_tables_operation = table_definitions.map(function(def){
-    return extract_table(def.base_name, def.view_name, def.translation_dict);
-});
+    airtable.configure(config.auth);
 
-// run 
-Promise.all(extract_tables_operation)
-.then(function(collections){
+    var base = airtable.base(config.base_id);
 
-    //collect arrays into an object dict
-    var db = collections.reduce(function(result, next, index){
-        var table_name = table_definitions[index].internal_table_name;
-        result[table_name] = next;
-        return result;
-    }, {});
+    // create a promise per table definition
+    var extract_tables_operation = table_definitions.map(function(def){
+        return extract_table(def.base_name, def.view_name, def.translation_dict);
+    });
 
-    return db;
-})
-.then(function(db){
-    // write to disk
-    var file_path = '../data/airtable_db.json';
-    fs.writeFileSync(file_path, JSON.stringify(db, null, 2), 'utf-8');
-    console.log("wrote", file_path);
-});
+    // run 
+    Promise.all(extract_tables_operation)
+    .then(function(collections){
+        //collect arrays into an object dict
+        var db = collections.reduce(function(result, next, index){
+            var table_name = table_definitions[index].internal_table_name;
+            result[table_name] = next;
+            return result;
+        }, {});
 
+        return db;
+    })
+    .then(function(db){
+        // write to disk
+        fs.writeFileSync(file_path, JSON.stringify(db, null, 2), 'utf-8');
+        console.log("wrote", file_path);
+        done_cb();
+    });
+};
 
+module.exports = export_airtable_as_json_to_file;
