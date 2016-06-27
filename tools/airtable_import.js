@@ -3,7 +3,7 @@
 
 var fs = require('fs'),
     util = require('util'),
-    assert = require('assert');
+    assert = require('assert'),
     _ = require('lodash'),
     airtable = require('airtable'),
     prop_translations = require('./airtable_prop_translations'),
@@ -37,11 +37,11 @@ var parse_record = function(record, translation_dict){
 };
 
 // promisify the extraction of one table
-var extract_table = function(base_name, view_name, translation_dict){
+var extract_table = function(base, table_name, view_name, translation_dict){
     var result = [];
 
     return new Promise(function(resolve, reject){
-        base(base_name)
+        base(table_name)
         .select({
                 maxRecords: 500,
                 view: view_name
@@ -74,62 +74,62 @@ var extract_table = function(base_name, view_name, translation_dict){
 
 var table_definitions = [
     {
-        base_name:'LLDD',
+        table_name:'LLDD',
         view_name: 'Regarder',
         translation_dict: prop_translations.asset_table,
         internal_table_name: 'assets'
     },
     {
-        base_name:'Tags',
+        table_name:'Tags',
         view_name: 'Main View',
         translation_dict: prop_translations.tags_table,
         internal_table_name: 'tags'
     },
     {
-        base_name:'Themes',
+        table_name:'Themes',
         view_name: 'Main View',
         translation_dict: prop_translations.themes_table,
         internal_table_name: 'themes'
     },
     {
-        base_name:'Forme littéraire',
+        table_name:'Forme littéraire',
         view_name: 'Main View',
-        translation_dict: prop_translations.litt_forms_table,
+        translation_dict: prop_translations.literary_forms_table,
         internal_table_name: 'literary_forms'
     },
     {
-        base_name:'Zones',
+        table_name:'Zones',
         view_name: 'Main View',
-        translation_dict: prop_translations.asset_table,
+        translation_dict: prop_translations.zones_table,
         internal_table_name: 'zones'
     },
     {
-        base_name:'Personnages',
+        table_name:'Personnages',
         view_name: 'Main View',
         translation_dict: prop_translations.characters_table,
         internal_table_name: 'characters'
     },
     {
-        base_name:'Position dans l\'histoire',
+        table_name:'Position dans l\'histoire',
         view_name: 'Main View',
         translation_dict: prop_translations.narrative_position_table,
         internal_table_name: 'narrative_positions'
     }
 ];
 
-var export_airtable_as_json_to_file = function(file_path, done_cb){
+var export_airtable_as_json_to_file = function(file_path){
 
     airtable.configure(config.auth);
 
-    var base = airtable.base(config.base_id);
+    base = airtable.base(config.base_id);
 
     // create a promise per table definition
     var extract_tables_operation = table_definitions.map(function(def){
-        return extract_table(def.base_name, def.view_name, def.translation_dict);
+        return extract_table(base, def.table_name, def.view_name, def.translation_dict);
     });
 
     // run 
-    Promise.all(extract_tables_operation)
+    return Promise.all(extract_tables_operation)
     .then(function(collections){
         //collect arrays into an object dict
         var db = collections.reduce(function(result, next, index){
@@ -144,7 +144,7 @@ var export_airtable_as_json_to_file = function(file_path, done_cb){
         // write to disk
         fs.writeFileSync(file_path, JSON.stringify(db, null, 2), 'utf-8');
         console.log("wrote", file_path);
-        done_cb();
+        return true;
     });
 };
 
