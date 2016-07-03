@@ -6,7 +6,7 @@ var config = require('../lib/config'),
     nora_db = require('../lib/nora_db').nora_db,
     test = exports;
 
-describe("functional test of the model build procedure (dev environment)", function(){
+describe("test nora db", function(){
 
 
     var fs = require('fs'),
@@ -18,7 +18,7 @@ describe("functional test of the model build procedure (dev environment)", funct
        done(); 
     });
 
-    it("::region_for_point should return a feature with prop zone_id = zone_2 given a point in zone_2", function(done){
+    it("::zone_for_point should return a feature with prop zone_id = zone_2 given a point in zone_2", function(done){
         var geo = require('../lib/zone_geo_data'),
             turf = require('turf');
 
@@ -26,21 +26,21 @@ describe("functional test of the model build procedure (dev environment)", funct
             pt_inside_atelier = turf.point([6.13483965396881, 46.19957769341309]);
 
 
-        var result = nora_db.region_for_point(pt_inside_atelier);
+        var result = nora_db.zone_for_point(pt_inside_atelier);
 
         result.should.eql(zone_2);
 
         done();
     });
 
-    it("::region_for_point should return feature point with zone_id 'other'", function(done){
+    it("::zone_for_point should return feature point with zone_id 'other'", function(done){
         var geo = require('../lib/zone_geo_data'),
             turf = require('turf');
 
         var pt_on_the_english_channel = turf.point([ -0.9558105468749999, 50.05008477838258]);
 
 
-        var result = nora_db.region_for_point(pt_on_the_english_channel);
+        var result = nora_db.zone_for_point(pt_on_the_english_channel);
 
         result.properties.zone_id.should.equal('other'); 
 
