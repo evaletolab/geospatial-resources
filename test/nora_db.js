@@ -3,7 +3,7 @@
 var config = require('../lib/config'),
     assert = require('assert'),
     should = require('should'),
-    nora = require('../lib/nora_engine').nora,
+    nora_db = require('../lib/nora_db').nora_db,
     test = exports;
 
 describe("functional test of the model build procedure (dev environment)", function(){
@@ -26,7 +26,7 @@ describe("functional test of the model build procedure (dev environment)", funct
             pt_inside_atelier = turf.point([6.13483965396881, 46.19957769341309]);
 
 
-        var result = nora.region_for_point(pt_inside_atelier);
+        var result = nora_db.region_for_point(pt_inside_atelier);
 
         result.should.eql(zone_2);
 
@@ -40,7 +40,7 @@ describe("functional test of the model build procedure (dev environment)", funct
         var pt_on_the_english_channel = turf.point([ -0.9558105468749999, 50.05008477838258]);
 
 
-        var result = nora.region_for_point(pt_on_the_english_channel);
+        var result = nora_db.region_for_point(pt_on_the_english_channel);
 
         result.properties.zone_id.should.equal('other'); 
 
@@ -61,9 +61,9 @@ describe("functional test of the model build procedure (dev environment)", funct
                 "zone" : ["zone_1"]
             }]};
 
-        var nora = require("../lib/nora_engine").nora_factory(model_data, null, require('lodash'));
+        var nora_db = require("../lib/nora_db").nora_db_factory(model_data, null, require('lodash'));
 
-        var result = nora.all_assets_for_zone_id('other');
+        var result = nora_db.all_assets_for_zone_id('other');
     
         result.length.should.equal(1);
 
@@ -91,10 +91,10 @@ describe("functional test of the model build procedure (dev environment)", funct
             "properties": { zone_id: "other" }
         };
 
-        var nora = require("../lib/nora_engine").nora_factory(model_data, null, require('lodash'));
+        var nora_db = require("../lib/nora_db").nora_db_factory(model_data, null, require('lodash'));
 
 
-        var result = nora.all_assets_for_zone(zone);
+        var result = nora_db.all_assets_for_zone(zone);
     
         result.length.should.equal(1);
 
