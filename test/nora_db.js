@@ -47,7 +47,7 @@ describe("test nora db", function(){
         done();
     });
 
-    it("::all_assets_for_zone_id should return all assets for zone id", function(done){
+    it("::assets_for_zone_id should return all assets for zone id", function(done){
         var model_data = { "assets": [
             {
                 "id": "foo",
@@ -63,7 +63,7 @@ describe("test nora db", function(){
 
         var nora_db = require("../lib/nora_db").nora_db_factory(model_data, null, require('lodash'));
 
-        var result = nora_db.all_assets_for_zone_id('other');
+        var result = nora_db.assets_for_zone_id('other');
     
         result.length.should.equal(1);
 
@@ -73,7 +73,7 @@ describe("test nora db", function(){
     
     });
 
-    it("::all_assets_for_zone should return all assets for zone", function(done){
+    it("::assets_for_zone should return all assets for zone", function(done){
         var model_data = { "assets": [
             {
                 "id": "foo",
@@ -93,8 +93,7 @@ describe("test nora db", function(){
 
         var nora_db = require("../lib/nora_db").nora_db_factory(model_data, null, require('lodash'));
 
-
-        var result = nora_db.all_assets_for_zone(zone);
+        var result = nora_db.assets_for_zone(zone);
     
         result.length.should.equal(1);
 
