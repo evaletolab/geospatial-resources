@@ -67,12 +67,12 @@ describe("test nora_engine", function(){
         done();
     });
 
-    it("::next_asset should return an object with status invalid and asset null", function(done){
+    it("::current_asset should return an object with status invalid and asset null", function(done){
         var nora_engine = require('../lib/nora_engine')(),
             nora_status_factory = require('../lib/nora_status');
 
 
-        var result = nora_engine.next_asset(),
+        var result = nora_engine.current_asset(),
             uninitialized_status = nora_status_factory.uninitialized_gps_position();
 
         result.status.should.eql(uninitialized_status);
@@ -81,19 +81,82 @@ describe("test nora_engine", function(){
         done();
     });
 
-    it("::next_asset should return an asset in zone 1 if last gps position in zone 1", function(done){
+    it("::current_asset should return an asset in zone 1 if last gps position in zone 1", function(done){
         var nora_engine = require('../lib/nora_engine')(),
             nora_status_factory = require('../lib/nora_status');
 
         // zone_id 1
         nora_engine.update_position({coords:{longitude: 6.13511323928833, latitude: 46.19984317040266}});
 
-        var result = nora_engine.next_asset(),
+        var result = nora_engine.current_asset(),
             ok_status = nora_status_factory.ok();
 
         result.status.should.eql(ok_status);
 
-        console.log(util.inspect(result.asset));
+        done();
+    });
+
+    it("::current_asset should return the same asset as long as asset_complete message not received", function(done){
+        var nora_engine = require('../lib/nora_engine')();
+
+        // zone_id 1
+        nora_engine.update_position({coords:{longitude: 6.13511323928833, latitude: 46.19984317040266}});
+
+        var result = nora_engine.current_asset(),
+            result_2 = nora_engine.current_asset();
+
+        result.should.eql(result_2);
+
+        done();
+    });
+
+
+    it("::signal_asset_complete should return error message, if gps position not previously set", function(done){
+    
+        var nora_engine = require('../lib/nora_engine')(),
+            nora_status_factory = require('../lib/nora_status'),
+            uninitialized_status = nora_status_factory.uninitialized_gps_position();
+
+        var result = nora_engine.signal_asset_complete();
+
+        result.status.should.eql(uninitialized_status);
+        should.equal(result.asset, null);
+
+        done();
+    });
+
+    it("::signal_asset_complete should return different asset", function(done){
+        var nora_engine = require('../lib/nora_engine')();
+
+        // zone_id 1
+        nora_engine.update_position({coords:{longitude: 6.13511323928833, latitude: 46.19984317040266}});
+
+        var result, result_2;
+
+        result = nora_engine.current_asset();
+        
+        result_2 = nora_engine.signal_asset_complete();
+
+        result.should.not.eql(result_2);
+
+        done();
+    });
+
+    it("::current_asset should return same asset as last call to signal_asset_complete", function(done){
+        var nora_engine = require('../lib/nora_engine')();
+
+        // zone_id 1
+        nora_engine.update_position({coords:{longitude: 6.13511323928833, latitude: 46.19984317040266}});
+
+        var result, result_2;
+
+        nora_engine.current_asset();
+        
+        result = nora_engine.signal_asset_complete();
+
+        result_2 = nora_engine.current_asset();
+
+        result.should.eql(result_2);
 
         done();
     });
