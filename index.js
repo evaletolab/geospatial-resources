@@ -5,4 +5,7 @@
  */
 
 
-module.exports = require('./lib/nora_engine');
+var nora = module.exports = require('./lib/nora_engine');
+if(window){
+    window.nora=nora;
+}
