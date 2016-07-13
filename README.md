@@ -1,5 +1,49 @@
 ## Main usage
-TODO
+
+            var nora = require('./lib/nora_engine')();
+
+            // nora ->
+            // { update_position: [Function],
+            //   current_zone_id: [Function],
+            //   assets_for_current_zone: [Function],
+            //   current_asset: [Function],
+            //   signal_asset_complete: [Function] }
+
+            nora.current_asset();
+            // returns 
+            // { status: { code: 1, message: 'uninitialized gps position' },
+            //   asset: null,
+            //   progression: { progression: 0, name: 'Initiateur' } }
+            // we don't return assets as long as no gps position has been set set.
+
+            // initialize engine
+            nora.update_position({coords:{longitude: 6.13511323928833, latitude: 45.19984317040266}});
+            // call on any gps change (expects a Position object -> https://developer.mozilla.org/en-US/docs/Web/API/Position)
+
+            nora.current_asset();
+            // returns 
+            // successive calls return the same object
+            { status: { code: 0, message: 'operation succesful' },
+              asset:  { id: 'recTPIyk4ljDZwCiW',
+                        zone: 'other',
+                        title: 'Un temps en suspens',
+                        audio_file: [{}],
+                        doc_url: 'http://www.liminaire.fr/derives/article/arrete-ton-cinema',
+                        text: '',
+                        image: [{}] ] },
+              progression: { progression: 8.333333333333334, name: 'Initiateur' } }
+
+            // when asset has finished playing
+            // call signal_asset_complete
+            nora.signal_asset_complete();
+            // returns next computed asset
+
+            // we know the story is complete when we receive following state
+            // { status: { code: 2, message: 'story ended (no more narrative positions)' },
+            //     asset: null,
+            //     progression: { progression: 100, name: null } }
+
+
 
 ## Installation
 For node installation, NVM is a nice tool, https://github.com/creationix/nvm
@@ -26,6 +70,19 @@ and [should.js](https://github.com/visionmedia/should.js). The tests are run sim
     make test
 
 
+## build
+
+### development
+
+The development build uses geographical areas based on the rue des maraîchers in geneva (cf docs/zone\_info)
+
+            gulp build_library_for_development
+
+### production
+
+The production build uses the areas based on the ile St-Louis in paris (cf docs/zone\_info)
+
+            gulp build_library_for_production
 
 ##Overview
 TODO
